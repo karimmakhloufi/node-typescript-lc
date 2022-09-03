@@ -2,6 +2,7 @@ import "reflect-metadata";
 import express from "express";
 import dataSource from "./utils";
 import wilderController from "./controller/wilder";
+import skillController from "./controller/skill";
 
 const app = express();
 
@@ -13,6 +14,9 @@ app.get("/", (req, res) => {
 
 app.get("/api/wilder", wilderController.read);
 app.post("/api/wilder", wilderController.create);
+
+app.get("/api/skill", skillController.read);
+app.post("/api/skill", skillController.create);
 
 const port = 5000;
 
