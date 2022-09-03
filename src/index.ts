@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
+app.get("/api/wilder", wilderController.read);
 app.post("/api/wilder", wilderController.create);
 
 const port = 5000;

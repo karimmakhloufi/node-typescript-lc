@@ -14,6 +14,15 @@ const wilderController = {
       res.send("Error while creating the wilder");
     }
   },
+  read: async (req: Request, res: Response) => {
+    try {
+      const wilders = await dataSource.manager.find(Wilder);
+      res.send(wilders);
+    } catch (err) {
+      console.log(err);
+      res.send("Error while getting the wilders");
+    }
+  },
 };
 
 export default wilderController;
