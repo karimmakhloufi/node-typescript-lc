@@ -1,5 +1,7 @@
+import "reflect-metadata";
 import express from "express";
 import { DataSource } from "typeorm";
+import { Wilder } from "./entity/wilder";
 
 const app = express();
 
@@ -7,6 +9,7 @@ const dataSource = new DataSource({
   type: "sqlite",
   database: "./wildersdb.sqlite",
   synchronize: true,
+  entities: [Wilder],
 });
 
 app.get("/", (req, res) => {
