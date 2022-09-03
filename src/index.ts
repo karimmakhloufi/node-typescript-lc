@@ -3,6 +3,7 @@ import express from "express";
 import dataSource from "./utils";
 import wilderController from "./controller/wilder";
 import skillController from "./controller/skill";
+import gradeController from "./controller/grade";
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.post("/api/wilder", wilderController.create);
 
 app.get("/api/skill", skillController.read);
 app.post("/api/skill", skillController.create);
+
+app.post("/api/grade", gradeController.create);
 
 const port = 5000;
 
