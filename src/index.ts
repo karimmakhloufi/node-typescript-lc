@@ -1,20 +1,17 @@
 import "reflect-metadata";
 import express from "express";
-import { DataSource } from "typeorm";
-import { Wilder } from "./entity/wilder";
+import dataSource from "./utils";
+import wilderController from "./controller/wilder";
 
 const app = express();
 
-const dataSource = new DataSource({
-  type: "sqlite",
-  database: "./wildersdb.sqlite",
-  synchronize: true,
-  entities: [Wilder],
-});
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
+
+app.post("/api/wilder", wilderController.create);
 
 const port = 5000;
 

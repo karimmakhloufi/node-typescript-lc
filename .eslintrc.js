@@ -10,5 +10,12 @@ module.exports = {
     sourceType: "module",
     project: ["./tsconfig.json"],
   },
-  rules: {},
+  rules: {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: false,
+      },
+    ],
+  },
 };
