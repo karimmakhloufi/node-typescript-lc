@@ -17,7 +17,11 @@ const wilderController = {
   read: async (req: Request, res: Response) => {
     try {
       const wilders = await dataSource.manager.find(Wilder, {
-        relations: { grades: true },
+        relations: {
+          grades: {
+            skill: true,
+          },
+        },
       });
       res.send(wilders);
     } catch (err) {
