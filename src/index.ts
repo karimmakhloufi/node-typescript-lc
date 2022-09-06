@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express from "express";
+import cors from "cors";
 import dataSource from "./utils";
 import wilderController from "./controller/wilder";
 import skillController from "./controller/skill";
@@ -8,6 +9,7 @@ import gradeController from "./controller/grade";
 const app = express();
 
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" }));
 
 app.get("/", (req, res) => {
   res.send("Hello world");
