@@ -3,6 +3,6 @@ Content-Type: application/json
 
 {
     "grade": 8,
-    "skillId": 2,
-    "wilderId": 1
+    "skillName": "C++",
+    "wilderName": "Paul"
 }

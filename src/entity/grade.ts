@@ -4,8 +4,8 @@ import { Skill } from "./skill";
 
 @Entity()
 export class Grade {
-  @PrimaryGeneratedColumn()
-  public id: number;
+  @PrimaryGeneratedColumn("uuid")
+  public id: string;
 
   @Column()
   public wilderId: number;
