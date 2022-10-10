@@ -6,6 +6,16 @@ import { Wilder } from "./entity/wilder";
 const typeDefs = gql`
   type Wilder {
     name: String
+    grades: [Grade]
+  }
+
+  type Skill {
+    name: String
+  }
+
+  type Grade {
+    grade: Int
+    skill: Skill
   }
 
   type Query {
@@ -15,14 +25,17 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    getAllWilders: async () =>
-      await dataSource.manager.find(Wilder, {
+    getAllWilders: async () => {
+      const allWilders = await dataSource.manager.find(Wilder, {
         relations: {
           grades: {
             skill: true,
           },
         },
-      }),
+      });
+      console.log(JSON.stringify(allWilders, null, 2));
+      return allWilders;
+    },
   },
 };
 
