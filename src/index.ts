@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { ApolloServer, gql } from "apollo-server";
 import dataSource from "./utils";
 import { Wilder } from "./entity/wilder";
+import { Skill } from "./entity/skill";
 
 const typeDefs = gql`
   type Wilder {
@@ -21,6 +22,10 @@ const typeDefs = gql`
   type Query {
     getAllWilders: [Wilder]
   }
+
+  type Mutation {
+    createSkill(name: String): Skill
+  }
 `;
 
 const resolvers = {
@@ -35,6 +40,14 @@ const resolvers = {
       });
       console.log(JSON.stringify(allWilders, null, 2));
       return allWilders;
+    },
+  },
+  Mutation: {
+    createSkill: async (_: any, args: any) => {
+      console.log(args);
+      const skillToCreate = new Skill();
+      skillToCreate.name = args.name;
+      return await dataSource.manager.save(Skill, skillToCreate);
     },
   },
 };
