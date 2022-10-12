@@ -13,6 +13,7 @@ export class Wilder {
   @Column()
   name: string;
 
+  @Field(() => [Grade])
   @OneToMany(() => Grade, (grade) => grade.wilder)
   public grades: Grade[];
 }
