@@ -13,7 +13,7 @@ export class Wilder {
   @Column()
   name: string;
 
-  @Field(() => [Grade])
+  @Field(() => [Grade], { nullable: true })
   @OneToMany(() => Grade, (grade) => grade.wilder)
   public grades: Grade[];
 }

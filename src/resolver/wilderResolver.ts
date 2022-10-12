@@ -1,4 +1,4 @@
-import { Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { Wilder } from "../entity/wilder";
 import dataSource from "../utils";
 
@@ -13,5 +13,14 @@ export class WilderResolver {
         },
       },
     });
+  }
+
+  @Mutation(() => Wilder)
+  async createWilder(@Arg("name") name: string): Promise<Wilder> {
+    const newWilder = new Wilder();
+    newWilder.name = name;
+    const wilderFromDB = await dataSource.manager.save(Wilder, newWilder);
+    console.log(wilderFromDB);
+    return wilderFromDB;
   }
 }
